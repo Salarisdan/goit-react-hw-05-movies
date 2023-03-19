@@ -74,3 +74,4 @@ MovieDetailsPage.propTypes = {
 };
 
 export default MovieDetailsPage;
+

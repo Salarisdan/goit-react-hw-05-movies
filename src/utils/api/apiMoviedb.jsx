@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const API_KEY = 'f864ef6a91b9e0820f1a60a4087912c5';
-const BASE_URL ='https://api.themoviedb.org/3';
-
+const BASE_URL ='https://api.themoviedb.org/3/';
+export const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 axios.defaults.baseURL = BASE_URL;
 
 export const getTrending = async () => {
@@ -53,3 +53,4 @@ export const getMoviesReviews = async moviesId => {
   }));
   return reviews;
 };
+
