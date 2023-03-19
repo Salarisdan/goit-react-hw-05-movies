@@ -2,7 +2,7 @@ import * as API from '../api/apiMoviedb';
 import { useState, useEffect } from 'react';
 
 export const useMovieDetails = (movieId) => {
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState("");
 
   useEffect(() => {
     async function fetchMovieDetails() {
