@@ -1,5 +1,5 @@
-import { useEffect,  } from 'react';
-import { Switch, Route } from 'react-router-dom';
+
+import { Routes, Route } from 'react-router-dom';
 import SharedLayout from './SharedLayout/SharedLayout';
 import HomePage from '../pages/HomePage';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
@@ -9,12 +9,10 @@ import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
 
 const App = () => {
-  useEffect(() => {
-    return () => {};
-  }, []);
+ 
 
   return (
-    <Switch>
+    <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path="movies" element={<MoviesPage />} />
@@ -24,7 +22,7 @@ const App = () => {
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
-    </Switch>
+    </Routes>
   );
 };
 
