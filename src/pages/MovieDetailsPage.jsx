@@ -1,6 +1,10 @@
 import { Link, Outlet, useParams,  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useMovieDetails } from 'utils/hooks/useMovieDetails';
+import React, { Suspense } from 'react';
+
+// const Cast = React.lazy(() => import('./Cast'));
+// const Reviews = React.lazy(() => import('./Reviews'));
 
 const MovieDetailsPage = ({ location }) => {
   const { movieId } = useParams();
@@ -58,7 +62,9 @@ const MovieDetailsPage = ({ location }) => {
             </li>
           </ul>
 
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </div>
