@@ -1,30 +1,19 @@
-import { Link, Outlet, useParams,  } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Outlet, Link, useParams, useLocation,  } from 'react-router-dom';
 import { useMovieDetails } from 'utils/hooks/useMovieDetails';
-import React, { Suspense } from 'react';
+import { Suspense,  } from 'react';
 
-// const Cast = React.lazy(() => import('./Cast'));
-// const Reviews = React.lazy(() => import('./Reviews'));
 
-const MovieDetailsPage = ({ location }) => {
+
+// const CastPage = lazy(() => import('./CastPage'));
+// const ReviewsPage = lazy(() => import('./ReviewsPage'));
+// const ErrorFallback = () => <div>Something went wrong...</div>;
+
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const { movieDetails, isLoading } = useMovieDetails(movieId);
-  const { from } = location.state || {};
-  const backLinkHref = from || '/';
+  const { movieDetails } = useMovieDetails(movieId);
 
-  const getReleaseYear = () => {
-    if (movieDetails.release_date) {
-      return movieDetails.release_date.substring(0, 4);
-    }
-    return '';
-  };
-
-  const getVotePercentage = () => {
-    if (movieDetails.vote_average) {
-      return Math.round(movieDetails.vote_average * 10).toFixed(0) + '%';
-    }
-    return '';
-  };
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   return (
     <div>
@@ -32,59 +21,52 @@ const MovieDetailsPage = ({ location }) => {
         <button type="button">Go back</button>
       </Link>
 
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <h2>
-            {movieDetails.title} ({getReleaseYear()})
-          </h2>
+      <h2>
+        {movieDetails.title} (
+        {movieDetails.release_date
+          ? movieDetails.release_date.substring(0, 4)
+          : ''}
+        )
+      </h2>
 
-          <img
-            src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movieDetails.poster_path}`}
-            alt={movieDetails.original_title}
-          />
+      <img
+        src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movieDetails.poster_path}`}
+        alt="{movieDetails.original_title}"
+      />
 
-          <p>User Score: {getVotePercentage()}</p>
-          <h3>Overview</h3>
-          <p>{movieDetails.overview}</p>
+      <p>
+        User Score:{' '}
+        {movieDetails.vote_average
+          ? Math.fround(movieDetails.vote_average * 10).toFixed(0)
+          : ''}
+        %
+      </p>
+      <h3>Overview</h3>
+      <p>{movieDetails.overview}</p>
 
-          <h4>Genres</h4>
-          <p>{movieDetails.genres?.map((genre) => genre.name).join(' ')}</p>
+      <h4>Genres</h4>
+      <p>
+        {movieDetails.genres
+          ? movieDetails.genres.map(genre => genre.name).join(' ')
+          : ''}
+      </p>
 
-          <p>Additional information</p>
-          <ul>
-            <li>
-              <Link to={`${movieId}/cast`}>Cast</Link>
-            </li>
-            <li>
-              <Link to={`${movieId}/reviews`}>Reviews</Link>
-            </li>
-          </ul>
+      <p>Additional information</p>
 
-          <Suspense fallback={<div>Loading...</div>}>
-            <Outlet />
-          </Suspense>
-        </>
-      )}
+      <ul>
+        <li>
+          <Link to={`${movieId}/cast`}>Cast</Link>
+        </li>
+        <li>
+          <Link to={`${movieId}/reviews`}>Reviews</Link>
+        </li>
+      </ul>
+
+      <Suspense fallback={<div>Loading...</div>} >
+        <Outlet />
+      </Suspense>
     </div>
   );
-};
-
-MovieDetailsPage.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.shape({
-      from: PropTypes.string,
-    }),
-  }),
-};
-
-MovieDetailsPage.defaultProps = {
-  location: {
-    state: {
-      from: '/',
-    },
-  },
 };
 
 export default MovieDetailsPage;
