@@ -1,12 +1,12 @@
-import { Outlet, Link, useParams, useLocation } from 'react-router-dom';
+import { Link, Outlet, useParams,  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useMovieDetails } from 'utils/hooks/useMovieDetails';
 
-const MovieDetailsPage = () => {
+const MovieDetailsPage = ({ location }) => {
   const { movieId } = useParams();
   const { movieDetails, isLoading } = useMovieDetails(movieId);
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const { from } = location.state || {};
+  const backLinkHref = from || '/';
 
   const getReleaseYear = () => {
     if (movieDetails.release_date) {
@@ -17,7 +17,7 @@ const MovieDetailsPage = () => {
 
   const getVotePercentage = () => {
     if (movieDetails.vote_average) {
-      return Math.fround(movieDetails.vote_average * 10).toFixed(0) + '%';
+      return Math.round(movieDetails.vote_average * 10).toFixed(0) + '%';
     }
     return '';
   };
@@ -46,15 +46,15 @@ const MovieDetailsPage = () => {
           <p>{movieDetails.overview}</p>
 
           <h4>Genres</h4>
-          <p>{movieDetails.genres?.map(genre => genre.name).join(' ')}</p>
+          <p>{movieDetails.genres?.map((genre) => genre.name).join(' ')}</p>
 
           <p>Additional information</p>
           <ul>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to={`${movieId}/cast`}>Cast</Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to={`${movieId}/reviews`}>Reviews</Link>
             </li>
           </ul>
 
@@ -73,5 +73,12 @@ MovieDetailsPage.propTypes = {
   }),
 };
 
-export default MovieDetailsPage;
+MovieDetailsPage.defaultProps = {
+  location: {
+    state: {
+      from: '/',
+    },
+  },
+};
 
+export default MovieDetailsPage;
