@@ -12,10 +12,10 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const SharedLayout = () => {
+export const SharedLayout = () => {
   return (
-    <div className={css.container}>
-      <header className={css.header}>
+    <div className="css.container">
+      <header className="css.header">
         <nav>
           <StyledLink className={css.link} to="/" end>
             Home
@@ -31,5 +31,3 @@ const SharedLayout = () => {
     </div>
   );
 };
-
-export default SharedLayout;
