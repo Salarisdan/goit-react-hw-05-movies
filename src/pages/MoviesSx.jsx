@@ -1,5 +1,5 @@
-import { useTrendingList } from '../utils/hooks/useTrendingList';
-import { TrendingList } from 'components/TrendingList/TrendingList';
+import { useTrendingList } from '../utils/hooks/TrendingList';
+import { TrendingList } from '../components/TrendingList/TrendingListSx';
 
 const HomePage = () => {
   const { trendingMovies } = useTrendingList();

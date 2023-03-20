@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { TrendingList } from 'components/TrendingList/TrendingList';
+import { TrendingList } from './SearchFormSx';
 import * as API from '../../utils/api/apiMoviedb';
 
 export const SearchForm = () => {

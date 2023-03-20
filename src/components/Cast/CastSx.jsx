@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useMovieCredits } from 'utils/hooks/useMovieCredits';
+import { useMovieCredits } from 'utils/hooks/MovieCredits';
 import PropTypes from 'prop-types';
 
 const Cast = () => {

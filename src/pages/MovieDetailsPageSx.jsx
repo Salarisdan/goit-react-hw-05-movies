@@ -1,6 +1,6 @@
 
 import { Outlet, Link, useParams, useLocation } from 'react-router-dom';
-import { useMovieDetails } from 'utils/hooks/useMovieDetails';
+import { useMovieDetails } from 'utils/hooks/MovieDetails';
 import { Suspense } from 'react';
 
 const MovieDetailsPage = () => {
