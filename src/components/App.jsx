@@ -12,11 +12,11 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
 
-  useEffect(() => {
-    return () => {
+  // useEffect(() => {
+  //   return () => {
       
-    };
-  }, []);
+  //   };
+  // }, []);
 
   return (
     <Routes>
