@@ -1,7 +1,12 @@
-import  {SearchForm}  from '../components/SearchForm/SearchForm';
+import { useTrendingList } from '../utils/hooks/useTrendingList';
+import { TrendingList } from 'components/TrendingList/TrendingList';
 
-const Movies = () => {
-  return <SearchForm />;
+const HomePage = () => {
+  const { trendingMovies } = useTrendingList();
+  return (
+    <div>
+      <TrendingList movies={trendingMovies} />
+    </div>
+  );
 };
-
-export default Movies;
+export default HomePage;

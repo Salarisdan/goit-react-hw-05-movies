@@ -11,6 +11,13 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
+
+  useEffect(() => {
+    return () => {
+      
+    };
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
