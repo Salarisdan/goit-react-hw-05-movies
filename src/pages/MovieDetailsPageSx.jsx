@@ -44,10 +44,10 @@ const MovieDetailsPage = () => {
 
       <ul>
         <li>
-          <Link to={`${movieId}/cast`}>Cast</Link>
+        <Link to={`/movies/${movieId}/cast`}>Cast</Link>
         </li>
         <li>
-          <Link to={`${movieId}/reviews`}>Reviews</Link>
+        <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
         </li>
       </ul>
 
