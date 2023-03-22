@@ -9,6 +9,7 @@ const NotFound = lazy(() => import('../pages/NotFoundSx'));
 const Cast = lazy(() => import('./Cast/CastSx' /* webpackChunkName: "cast-sx" */));
 const Reviews = lazy(() => import('./Reviews/ReviewsSx' /* webpackChunkName: "reviews-sx" */));
 
+
 export const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -18,7 +19,9 @@ export const App = () => {
           <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
           <Route path="/movies/:movieId/cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+          <Route path="reviews" element={<Reviews />} />
+        
+
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

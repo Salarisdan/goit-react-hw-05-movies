@@ -1,12 +1,7 @@
-import { useTrendingList } from '../utils/hooks/TrendingList';
-import { TrendingList } from '../components/TrendingList/TrendingListSx';
+import { SearchForm } from 'components/SearchForm/SearchFormSx';
 
-const HomePage = () => {
-  const { trendingMovies } = useTrendingList();
-  return (
-    <div>
-      <TrendingList movies={trendingMovies} />
-    </div>
-  );
+const Movies = () => {
+  return <SearchForm />;
 };
-export default HomePage;
+
+export default Movies;

@@ -1,21 +1,19 @@
+// import { useSearchMovies } from 'utils/hooks/useSearchMovies';
 import { useSearchParams } from 'react-router-dom';
+import * as API from '../../utils/api/apiMoviedbSx';
 import { useEffect, useState } from 'react';
-import { TrendingList } from './SearchFormSx';
-import * as API from '../../utils/api/apiMoviedb';
+import { TrendingList } from 'components/TrendingList/TrendingListSx';
 
 export const SearchForm = () => {
-  // Initialize state variables for movie search results and search parameters
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Function to handle form submission
   const handleSubmit = e => {
-    // Set search parameters based on input field value and prevent default form submission behavior
     setSearchParams({ query: e.target[0].value });
     e.preventDefault();
+    return;
   };
 
-  // Effect hook to fetch search results when search parameters change
   useEffect(() => {
     const movieTitle = searchParams.get('query');
     if (movieTitle) {
@@ -29,7 +27,6 @@ export const SearchForm = () => {
         <input type="text" placeholder="Search..."></input>
         <button type="submit">Search</button>
       </form>
-      {/* Render a list of trending movies or search results */}
       <TrendingList movies={movies} />
     </div>
   );
